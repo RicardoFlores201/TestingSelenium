@@ -9,18 +9,24 @@ class RetoUnitTest(unittest.TestCase):
         self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(10)
 
+    def test_logo(self):
+        self.driver.get("https://www.saucedemo.com/v1/")
+        self.driver.maximize_window()
+        try:
+            logo = self.driver.find_element(By.XPATH,"//div[@class='login_logo']")
+        except NoSuchElementException:
+            self.fail("No se encontró el elemento")
+        self.assertTrue(logo.is_displayed())
+
     def test_element_UserName(self):
         self.driver.get("https://www.saucedemo.com/v1/")
         self.driver.maximize_window()
-
         try:
             usernamefield = self.driver.find_element(By.XPATH,"//input[@id='user-name']")
         except NoSuchElementException:
             self.fail("No se encontró el elemento")
         self.assertTrue(usernamefield.is_displayed())
 
-        #loginBtn = self.driver.find_element(By.XPATH,"//input[@id='login-buttons']")
-        #self.assertTrue(len(loginBtn)>0), f"No se encontró ningún elemento"
     def test_element_Password(self):
         self.driver.get("https://www.saucedemo.com/v1/")
         self.driver.maximize_window()
