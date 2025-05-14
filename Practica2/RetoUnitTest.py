@@ -3,6 +3,8 @@ from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 
+#PRUEBA FUNCIONAL DE INTERFAZ DE USUARIO (END TO END) AUTOMATIZADA CON SELENIUM
+
 class RetoUnitTest(unittest.TestCase):
 
     def initPage(self):
