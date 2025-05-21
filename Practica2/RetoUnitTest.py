@@ -44,6 +44,29 @@ class RetoUnitTest(unittest.TestCase):
             self.fail("No se encontró el elemento")
         self.assertTrue(loginBtn.is_displayed())
 
+    def test_login(self):
+        try:
+            self.initPage()
+            userName= "standard_user"
+            password= "secret_sauce"
+
+            usernamefield = self.driver.find_element(By.XPATH, "//input[@id='user-name']")
+            usernamefield.clear()
+            usernamefield.send_keys(userName)
+
+            passwordField = self.driver.find_element(By.XPATH, "//input[@id='password']")
+            passwordField.clear()
+            passwordField.send_keys(password)
+
+            loginBtn = self.driver.find_element(By.XPATH, "//input[@id='login-button']")
+            loginBtn.click()
+
+            current_url = self.driver.current_url
+            self.assertIn("/inventory.html", current_url, f"Después del Login debe ir a ´/inventory.html´  {current_url}")
+
+        except NoSuchElementException:
+            self.fail("No se inició sesion con exito")
+
     def tearDown(self):
         self.driver.quit()
 
